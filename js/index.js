@@ -5,12 +5,14 @@ for (var i = 0; i < total_botones; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         var buttonInnerHTML = this.innerHTML;
         soundKey(buttonInnerHTML);
+        Animations(buttonInnerHTML);
     });
 }
 
 //detecting keyboard press
 document.addEventListener("keydown", function(event){
     soundKey(event.key);
+    Animations(event.key);
 });
 
 
@@ -49,4 +51,14 @@ function soundKey(key){
             console.log(buttonInnerHTML);
     }
 
+}
+
+//buttons animations
+
+function Animations(currentKey) {
+    var activeButton=document.querySelector("."+currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    },100);
 }
